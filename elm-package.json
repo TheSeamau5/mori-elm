@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "summary": "Port of Mori in Elm",
-    "repository": "https://github.com/TheSeamau5/mori-elm",
+    "repository": "https://github.com/TheSeamau5/mori-elm.git",
     "license": "Eclipse Public Licence v1.0",
     "source-directories": [
         "src"
