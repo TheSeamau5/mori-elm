@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0",
+    "summary": "Port of Mori in Elm",
+    "repository": "https://github.com/USER/PROJECT.git",
+    "license": "Eclipse Public Licence v1.0",
+    "source-directories": [
+        "src"
+    ],
+    "exposed-modules": [
+      "Mori.Vector"
+    ],
+    "native-modules" : true,
+    "dependencies": {
+        "elm-lang/core": "1.1.0 <= v < 2.0.0"
+    }
+}
