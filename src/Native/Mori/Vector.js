@@ -641,10 +641,28 @@ Elm.Native.Mori.Vector.make = function(elm){
     return vector.toString();
   };
 
+  Vector.fromList = function Vector_fromList(list){
+    var mutableVector = mori.mutable.thaw(mori.vector());
+    var element = list;
+    while (element.ctor === "::"){
+      mutableVector = mori.mutable.conj.f2(mutableVector, element._0);
+      element = element._1;
+    }
+    return mori.mutable.freeze(mutableVector);
+  };
+
+  Vector.interval = function Vector_interval(start, end){
+    return seqToVec(mori.range(start, end));
+  };
+
+  Vector.intervalWithStep = function Vector_intervalWithStep(start, end, step){
+    return seqToVec(mori.range(start, end, step));
+  };
+
   return {
     conj : F2(Vector.conj),
     into : F2(Vector.into),
-    assoc : F2(Vector.assoc),
+    set : F2(Vector.assoc),
     distinct : Vector.distinct,
     empty : Vector.empty,
     get : F2(Vector.get),
@@ -652,7 +670,7 @@ Elm.Native.Mori.Vector.make = function(elm){
     hasIndex : F2(Vector.hasIndex),
     find : F2(Vector.find),
     last : Vector.last,
-    count : Vector.count,
+    length : Vector.count,
     isEmpty : Vector.isEmpty,
     pop : Vector.pop,
     reverse : Vector.reverse,
@@ -660,14 +678,14 @@ Elm.Native.Mori.Vector.make = function(elm){
     first : Vector.first,
     rest : Vector.rest,
     equals : F2(Vector.equals),
-    concat : F2(Vector.concat),
+    append : F2(Vector.concat),
     flatten : Vector.flatten,
     map : F2(Vector.map),
-    mapcat : F2(Vector.mapcat),
-    filter : F2(Vector.filter),
-    remove : F2(Vector.remove),
-    reduce : F3(Vector.reduce),
-    reduceKV : F3(Vector.reduceKV),
+    flatMap : F2(Vector.mapcat),
+    keepIf : F2(Vector.filter),
+    dropIf : F2(Vector.remove),
+    fold : F3(Vector.reduce),
+    foldKV : F3(Vector.reduceKV),
     take : F2(Vector.take),
     takeWhile : F2(Vector.takeWhile),
     drop : F2(Vector.drop),
@@ -683,7 +701,10 @@ Elm.Native.Mori.Vector.make = function(elm){
     partition : F2(Vector.partition),
     parittionBy : F2(Vector.partitionBy),
     initialize : F2(Vector.initialize),
-    toString : Vector.toString
+    toString : Vector.toString,
+    fromList : Vector.fromList,
+    interval : F2(Vector.interval),
+    intervalWithStep : F3(Vector.intervalWithStep)
   };
 
 };

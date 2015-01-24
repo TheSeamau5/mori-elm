@@ -20,4 +20,6 @@ v4 = V.flatten v3
 test1 = v2 `V.equals` v4
 test2 = v2 `V.equals` (V.conj 1898 v4)
 
-main = asText <| test1
+v5 = V.fromList []
+
+main = asText <| V.toString v5
